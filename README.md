@@ -1,2 +1,1 @@
-# M.T.D.Piyadasa
-[Product Name]
+Graph implementation using adjacency list 
