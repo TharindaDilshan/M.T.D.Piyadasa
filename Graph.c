@@ -67,13 +67,30 @@ void print(struct node_vertex *ptr){
 	}
 	
 }
-
+void delete_edge(struct node_vertex *ptr,int x,int y){
+	while(ptr->data!=x){
+		ptr=ptr->nextvertex;
+	}
+	struct node_edge *preptr=ptr->link;
+	struct node_edge *postptr;
+	if(preptr->data==y){
+		ptr->link=NULL;
+	}else{
+		while(preptr->data!=y){
+			postptr=preptr;
+			preptr=preptr->nextedge;
+		}
+		postptr->nextedge=preptr->nextedge;	
+	}
+	
+	free(preptr);	
+}
 
 int main(){
-	int x,y,v,i,j,s,q;
+	int x,y,v,i,j,s,q,k,l;
 	while(1){
-		printf("1.Create Graph\n2.Display Graph\n3.Add New vertex\n4.Add New Edge\n5.Exit\n");
-		printf("Enter Selection: ");
+		printf("1.Create Graph\n2.Display Graph\n3.Add New vertex\n4.Add New Edge\n5.Delete Edge\n6.Exit\n");
+		printf("\n\nEnter Selection: ");
 		scanf("%d",&s);
 	
 	
@@ -120,6 +137,11 @@ int main(){
 				break;
 				
 			case 5:
+				printf("Enter Edge to be removed(v v): ");
+				scanf("%d %d",&k,&l);
+				delete_edge(head,k,l);
+				break;
+			case 6:
 				exit(0);
 		}
 	}
